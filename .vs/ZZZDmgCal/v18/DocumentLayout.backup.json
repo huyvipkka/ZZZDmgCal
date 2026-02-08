@@ -1,0 +1,114 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Code\\ZZZDmgCal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|d:\\code\\zzzdmgcal\\settingswindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|solutionrelative:settingswindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|d:\\code\\zzzdmgcal\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|solutionrelative:mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|d:\\code\\zzzdmgcal\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|solutionrelative:mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|d:\\code\\zzzdmgcal\\settingswindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|solutionrelative:settingswindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|d:\\code\\zzzdmgcal\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2586DA62-798F-2CBD-1F0E-6670B20DD3B2}|ZZZDmgCal.csproj|solutionrelative:app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.axaml",
+              "DocumentMoniker": "D:\\Code\\ZZZDmgCal\\App.axaml",
+              "RelativeDocumentMoniker": "App.axaml",
+              "ToolTip": "D:\\Code\\ZZZDmgCal\\App.axaml",
+              "RelativeToolTip": "App.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-08T14:13:50.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SettingsWindow.axaml",
+              "DocumentMoniker": "D:\\Code\\ZZZDmgCal\\SettingsWindow.axaml",
+              "RelativeDocumentMoniker": "SettingsWindow.axaml",
+              "ToolTip": "D:\\Code\\ZZZDmgCal\\SettingsWindow.axaml",
+              "RelativeToolTip": "SettingsWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-08T14:08:33.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SettingsWindow.axaml.cs",
+              "DocumentMoniker": "D:\\Code\\ZZZDmgCal\\SettingsWindow.axaml.cs",
+              "RelativeDocumentMoniker": "SettingsWindow.axaml.cs",
+              "ToolTip": "D:\\Code\\ZZZDmgCal\\SettingsWindow.axaml.cs",
+              "RelativeToolTip": "SettingsWindow.axaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T14:08:33.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.axaml",
+              "DocumentMoniker": "D:\\Code\\ZZZDmgCal\\MainWindow.axaml",
+              "RelativeDocumentMoniker": "MainWindow.axaml",
+              "ToolTip": "D:\\Code\\ZZZDmgCal\\MainWindow.axaml",
+              "RelativeToolTip": "MainWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-08T06:56:50.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.axaml.cs",
+              "DocumentMoniker": "D:\\Code\\ZZZDmgCal\\MainWindow.axaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.axaml.cs",
+              "ToolTip": "D:\\Code\\ZZZDmgCal\\MainWindow.axaml.cs",
+              "RelativeToolTip": "MainWindow.axaml.cs",
+              "ViewState": "AgIAAB8BAAAAAAAAAAAiwC4BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-07T15:37:10.217Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

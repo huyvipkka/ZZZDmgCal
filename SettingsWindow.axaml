@@ -1,0 +1,32 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="450"
+        x:Class="ZZZDmgCal.SettingsWindow"
+        Width="350"
+        Height="450"
+        CanMaximize="False"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        Title="SettingsWindow">
+    <Border Margin="10" Padding="15" BorderThickness="1" BorderBrush="#CCC" CornerRadius="8">
+        <Border.Background>
+			<ImageBrush Source="avares://ZZZDmgCal/Assets/Images/xiaoguang.jpg"
+                    Stretch="UniformToFill"
+                    Opacity="0.3"/>
+        </Border.Background>
+        <StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Spacing="4" Orientation="Horizontal">
+            <TextBlock Text="Theme" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ComboBox Width="160" SelectedIndex="0" SelectionChanged="OnThemeSelectionChanged">
+                <ComboBoxItem Content="System" Tag="{x:Static ThemeVariant.Default}"/>
+                <ComboBoxItem Content="Light" Tag="{x:Static ThemeVariant.Light}"/>
+                <ComboBoxItem Content="Dark" Tag="{x:Static ThemeVariant.Dark}"/>
+            </ComboBox>
+        </StackPanel>
+            <TextBlock Text="Donate cho tôi" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="15 15 0 0"/>
+            <Image Source="avares://ZZZDmgCal/Assets/Images/QR.jpg" Width="300" Height="300" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Border>
+</Window>

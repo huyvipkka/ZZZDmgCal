@@ -1,0 +1,439 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:ZZZDmgCal"
+        x:Class="ZZZDmgCal.MainWindow"
+        x:DataType="local:MainWindow"
+        Width="600" Height="800"
+        Title="Damage Calculator">
+     <DockPanel>
+             <!-- HEADER -->
+    <Border DockPanel.Dock="Top"
+        Padding="12"
+        BorderThickness="0,0,0,1"
+        BorderBrush="#CCC">
+
+  <Grid ColumnDefinitions="Auto,1*,Auto"
+        RowDefinitions="Auto,Auto,Auto"
+        ColumnSpacing="16"
+        RowSpacing="5">
+
+    <!-- Title -->
+    <TextBlock Grid.Row="0"
+               Grid.Column="0"
+               Text="ZZZ Damage Calculator"
+               FontSize="18"
+               FontWeight="Bold"
+               VerticalAlignment="Center"/>
+
+    <!-- OUTPUT PANEL -->
+    <StackPanel Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
+                Spacing="24">
+
+      <StackPanel>
+        <TextBlock Text="Non-CRIT"
+                   FontSize="11"
+                   Foreground="Gray"/>
+        <TextBlock Text="{Binding NonCritDamage, StringFormat={}{0:F0}}"
+                   FontSize="16"
+                   FontWeight="Bold"/>
+      </StackPanel>
+
+      <StackPanel>
+        <TextBlock Text="CRIT"
+                   FontSize="11"
+                   Foreground="Gray"/>
+        <TextBlock Text="{Binding CritDamage, StringFormat={}{0:F0}}"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Foreground="DarkRed"/>
+      </StackPanel>
+
+      <StackPanel>
+        <TextBlock Text="AVG"
+                   FontSize="11"
+                   Foreground="Gray"/>
+        <TextBlock Text="{Binding AverageDamage, StringFormat={}{0:F0}}"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Foreground="DarkBlue"/>
+      </StackPanel>
+
+    </StackPanel>
+
+    <!-- Theme toggle -->
+    <Button Grid.Row="0"
+        Grid.Column="2"
+        ToolTip.Tip="Cài đặt"
+        Click="OpenSettings">
+    ⚙
+</Button>
+
+
+  </Grid>
+</Border>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Disabled">
+  <StackPanel Margin="16" Spacing="16">
+
+    <!-- Base DMG -->
+    <Border Padding="12" BorderThickness="1" BorderBrush="#CCC" CornerRadius="8">
+      <StackPanel Spacing="10">
+        <TextBlock FontWeight="Bold" FontSize="14" Text="Base DMG"/>
+
+        <Grid ColumnDefinitions="180,1*"
+              RowDefinitions="Auto,Auto,Auto"
+              RowSpacing="10"
+              ColumnSpacing="12">
+
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="ATK"/>
+          <TextBox   Grid.Row="0" Grid.Column="1" x:Name="AtkTextBox" Text="3000"/>
+
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Scale (%)"/>
+          <TextBox   Grid.Row="1" Grid.Column="1" x:Name="ScaleTextBox" Text="300"/>
+
+          <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Base Damage"/>
+          <TextBlock Grid.Row="2" Grid.Column="1"
+                     FontWeight="SemiBold"
+                     Foreground="DimGray"
+                     Text="{Binding BaseDmg}"/>
+        </Grid>
+      </StackPanel>
+    </Border>
+
+    <!-- DMG Bonus -->
+    <Border Padding="12" BorderThickness="1" BorderBrush="#CCC" CornerRadius="8">
+      <StackPanel Spacing="10">
+        <TextBlock FontWeight="Bold" FontSize="14" Text="DMG Bonus Multiplier"/>
+
+        <Grid ColumnDefinitions="180,1*"
+              RowDefinitions="Auto,Auto"
+              RowSpacing="10"
+              ColumnSpacing="12">
+
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="All DMG Bonus (%)"/>
+          <TextBox   Grid.Row="0" Grid.Column="1" x:Name="AllDamageBonusTextBox" Text="50"/>
+
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="DMG Bonus Multiplier"/>
+          <TextBlock Grid.Row="1" Grid.Column="1"
+                     x:Name="DamageBonusOutputText"
+                     FontWeight="SemiBold"
+                     Foreground="DimGray"
+                     Text="{Binding DmgBonusMuti, StringFormat={}{0:F3}}"/>
+        </Grid>
+      </StackPanel>
+    </Border>
+
+    <!-- CRIT -->
+    <Border Padding="12" BorderThickness="1" BorderBrush="#CCC" CornerRadius="8">
+      <StackPanel Spacing="10">
+        <TextBlock FontWeight="Bold" FontSize="14" Text="CRIT Multiplier"/>
+
+        <Grid ColumnDefinitions="180,1*"
+              RowDefinitions="Auto,Auto,Auto,Auto"
+              RowSpacing="10"
+              ColumnSpacing="12">
+
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="CRIT Rate (%)"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+        <Slider x:Name="CritRateSlider"
+                    Minimum="0"
+                    Maximum="100"
+                    TickFrequency="1"
+                    IsSnapToTickEnabled="True"
+                    Value="50"
+                    Grid.Row="0" Grid.Column="1"/>
+
+        <TextBlock Text="{Binding #CritRateSlider.Value,
+                          StringFormat='Crit: {0,0}%'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+            
+
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="CRIT DMG (%)"/>
+          <TextBox   Grid.Row="1" Grid.Column="1" x:Name="CritDmgTextBox" Text="200"/>
+
+          <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Crit Multiplier"/>
+          <TextBlock Grid.Row="2" Grid.Column="1"
+                     FontWeight="SemiBold"
+                     Foreground="DimGray"
+                     Text="{Binding CritMuti, StringFormat={}{0:F3}}"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Crit Multiplier Average"/>
+          <TextBlock Grid.Row="3" Grid.Column="1"
+                     FontWeight="SemiBold"
+                     Foreground="DimGray"
+                     Text="{Binding CritMutiAve, StringFormat={}{0:F3}}"/>
+        </Grid>
+      </StackPanel>
+    </Border>
+
+<!-- DEF Multiplier -->
+<Border Padding="12" BorderThickness="1" BorderBrush="#CCC" CornerRadius="8">
+  <StackPanel Spacing="10">
+    <TextBlock FontWeight="Bold" FontSize="14" Text="DEF Multiplier"/>
+
+    <Grid ColumnDefinitions="180,1*"
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+          RowSpacing="10"
+          ColumnSpacing="12">
+
+      <!-- Enemy DEF (Slider) -->
+      <TextBlock Grid.Row="0" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Enemy DEF"/>
+
+      <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+        <Slider x:Name="EnemyDefSlider"
+                Minimum="0"
+                Maximum="2000"
+                TickFrequency="100"
+                IsSnapToTickEnabled="True"
+                Value="800"/>
+        <TextBlock Text="{Binding #EnemyDefSlider.Value,
+                          StringFormat='DEF: {0:0}'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+
+      <!-- DEF Reduction -->
+      <TextBlock Grid.Row="1" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="DEF Reduction (%)"/>
+      <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
+        <Slider x:Name="DefReductionSlider"
+                    Minimum="0"
+                    Maximum="100"
+                    TickFrequency="1"
+                    IsSnapToTickEnabled="True"
+                    Value="50"
+                    Grid.Row="0" Grid.Column="1"/>
+
+        <TextBlock Text="{Binding #DefReductionSlider.Value,
+                          StringFormat='Redu: {0,0}%'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+
+      <!-- Armor Penetration -->
+      <TextBlock Grid.Row="2" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Armor Penetration (%)"/>
+      <StackPanel Grid.Row="2" Grid.Column="1" Spacing="4">
+        <Slider x:Name="ArmorPenetrationSlider"
+                    Minimum="0"
+                    Maximum="100"
+                    TickFrequency="1"
+                    IsSnapToTickEnabled="True"
+                    Value="50"
+                    Grid.Row="0" Grid.Column="1"/>
+
+        <TextBlock Text="{Binding #ArmorPenetrationSlider.Value,
+                          StringFormat='Pen: {0,0}%'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+        <!-- Armor Penetration Flat-->
+      <TextBlock Grid.Row="3" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Armor Penetration Flat"/>
+      <TextBox Grid.Row="3" Grid.Column="1"
+               x:Name="ArmorPenFlatTextBox" Text="0"/>
+
+      <!-- Character Level (ComboBox) -->
+      <TextBlock Grid.Row="4" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Character Level"/>
+      <ComboBox Grid.Row="4" Grid.Column="1"
+                x:Name="CharacterLevelComboBox"
+                SelectedIndex="5">
+          <ComboBoxItem Content="10"/>
+          <ComboBoxItem Content="20"/>
+          <ComboBoxItem Content="30"/>
+          <ComboBoxItem Content="40"/>
+          <ComboBoxItem Content="50"/>
+          <ComboBoxItem Content="60"/>
+      </ComboBox>
+
+      <!-- Output -->
+      <TextBlock Grid.Row="5" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="DEF Effective"/>
+      <TextBlock Grid.Row="5" Grid.Column="1"
+                 FontWeight="SemiBold"
+                 Foreground="DimGray"
+                 Text="{Binding EffectiveDef, StringFormat={}{0:F0}}"/>
+      <TextBlock Grid.Row="6" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="DEF Multiplier"/>
+      <TextBlock Grid.Row="6" Grid.Column="1"
+                 FontWeight="SemiBold"
+                 Foreground="DimGray"
+                 Text="{Binding DefMuti, StringFormat={}{0:F3}}"/>
+    </Grid>
+  </StackPanel>
+</Border>
+      <!-- RES Multiplier -->
+<Border Padding="12" BorderThickness="1" BorderBrush="#CCC" CornerRadius="8">
+  <StackPanel Spacing="10">
+    <TextBlock FontWeight="Bold" FontSize="14" Text="RES Multiplier"/>
+
+    <Grid ColumnDefinitions="180,1*"
+          RowDefinitions="Auto,Auto,Auto,Auto"
+          RowSpacing="10"
+          ColumnSpacing="12">
+
+      <!-- Enemy RES -->
+      <TextBlock Grid.Row="0" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Enemy RES (%)"/>
+
+      <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+        <Slider x:Name="EnemyResSlider"
+                Minimum="-50"
+                Maximum="50"
+                TickFrequency="10"
+                IsSnapToTickEnabled="True"
+                Value="1"/>
+        <TextBlock Text="{Binding #EnemyResSlider.Value,
+                          StringFormat='RES: {0:0}%'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+
+      <!-- RES Penetration -->
+      <TextBlock Grid.Row="1" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="RES Reduction (%)"/>
+      <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
+        <Slider x:Name="ResReductionSlider"
+                Minimum="-50"
+                Maximum="50"
+                TickFrequency="1"
+                IsSnapToTickEnabled="True"/>
+
+        <TextBlock Text="{Binding #ResReductionSlider.Value,
+                          StringFormat='Redu: {0:0}%'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+
+        <TextBlock Grid.Row="2" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="RES Ignore (%)"/>
+      <StackPanel Grid.Row="2" Grid.Column="1" Spacing="4">
+        <Slider x:Name="ResIgnoreSlider"
+                Minimum="-50"
+                Maximum="50"
+                TickFrequency="1"
+                IsSnapToTickEnabled="True"/>
+
+        <TextBlock Text="{Binding #ResIgnoreSlider.Value,
+                          StringFormat='Ignore: {0:0}%'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+
+      <!-- Output -->
+      <TextBlock Grid.Row="3" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="RES Multiplier"/>
+      <TextBlock Grid.Row="3" Grid.Column="1"
+                 FontWeight="SemiBold"
+                 Foreground="DimGray" Text="{Binding ResMuti, StringFormat={}{0:F3}}"/>
+    </Grid>
+  </StackPanel>
+</Border>
+
+      <!-- DMG Taken Multiplier -->
+<Border Padding="12" BorderThickness="1" BorderBrush="#CCC" CornerRadius="8">
+  <StackPanel Spacing="10">
+    <TextBlock FontWeight="Bold" FontSize="14" Text="DMG Taken Multiplier"/>
+
+    <Grid ColumnDefinitions="180,1*"
+          RowDefinitions="Auto,Auto,Auto,Auto"
+          RowSpacing="10"
+          ColumnSpacing="12">
+
+      <TextBlock Grid.Row="0" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="DMG Taken Increase (%)"/>
+
+      <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+        <Slider x:Name="DmgTakenIncreaseSlider"
+                Minimum="-90"
+                Maximum="200"
+                TickFrequency="10"
+                IsSnapToTickEnabled="True"
+                Value="0"/>
+        <TextBlock Text="{Binding #DmgTakenIncreaseSlider.Value,
+                          StringFormat='DMG Taken: {0:0}%'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+
+
+        <TextBlock Grid.Row="1" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="DMG Taken Reduction (%)"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
+        <Slider x:Name="DmgTakenReductionSlider"
+                Minimum="-90"
+                Maximum="200"
+                TickFrequency="10"
+                IsSnapToTickEnabled="True"
+                Value="0"/>
+        <TextBlock Text="{Binding #DmgTakenReductionSlider.Value,
+                          StringFormat='DMG Taken: {0:0}%'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+
+      <!-- Output -->
+      <TextBlock Grid.Row="2" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="DMG Taken Multiplier"/>
+      <TextBlock Grid.Row="2" Grid.Column="1"
+                 FontWeight="SemiBold"
+                 Foreground="DimGray" Text="{Binding DmgTakenMuti, StringFormat={}{0:F3}}"/>
+    </Grid>
+  </StackPanel>
+</Border>
+<!-- Stunned Multiplier -->
+<Border Padding="12" BorderThickness="1" BorderBrush="#CCC" CornerRadius="8">
+  <StackPanel Spacing="10">
+    <TextBlock FontWeight="Bold" FontSize="14" Text="Stunned Multiplier"/>
+
+    <Grid ColumnDefinitions="180,1*"
+          RowDefinitions="Auto,Auto"
+          RowSpacing="10"
+          ColumnSpacing="12">
+
+      <!-- Slider -->
+      <TextBlock Grid.Row="0" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Stunned DMG Multiplier"/>
+
+      <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+        <Slider x:Name="StunnedMultiplierSlider"
+                Minimum="1.0"
+                Maximum="3.0"
+                TickFrequency="0.05"
+                IsSnapToTickEnabled="True"
+                Value="1.5"/>
+
+        <TextBlock Text="{Binding #StunnedMultiplierSlider.Value,
+                          StringFormat='x{0:0.00}'}"
+                   Foreground="DimGray"/>
+      </StackPanel>
+
+      <!-- Output -->
+      <TextBlock Grid.Row="1" Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="Stunned Multiplier"/>
+
+      <TextBlock Grid.Row="1" Grid.Column="1"
+                 FontWeight="SemiBold"
+                 Foreground="DimGray"
+                 Text="{Binding StunMuti, StringFormat={}{0:F3}}"/>
+    </Grid>
+  </StackPanel>
+</Border>
+  </StackPanel>
+        </ScrollViewer>
+     </DockPanel>
+</Window>
